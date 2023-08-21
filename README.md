@@ -55,8 +55,12 @@ To train MSECNet on PCPNet:
 cd scripts
 sh run.sh {put your experiment name}
 ```
+
 ## Testing
-To test MSECNet on {dataset}:
+To test MSECNet on {dataset}, where dataset can be "PCPNet", "SceneNN", or "Semantic3D":
 ```
 sh run_test.sh {dataset} {your experiment name}
 ```
+
+## Log and pretrained models 
+[Experiment logs](https://drive.google.com/drive/folders/15xCmw9wwtNCweE1nJPx7eyD5hLtJ4PuA?usp=sharing) and [pretrained model](https://drive.google.com/drive/folders/1KSABd2Ydvrr7FN4JOVJFqnJTA2YbLDp_?usp=sharing) are available.
