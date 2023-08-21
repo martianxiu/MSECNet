@@ -65,3 +65,14 @@ sh run_test.sh {dataset} {your experiment name}
 
 ## Log and pretrained models 
 [Experiment logs](https://drive.google.com/drive/folders/15xCmw9wwtNCweE1nJPx7eyD5hLtJ4PuA?usp=sharing) and [pretrained model](https://drive.google.com/drive/folders/1KSABd2Ydvrr7FN4JOVJFqnJTA2YbLDp_?usp=sharing) are available.
+
+## Citation
+If you find our work useful in your research, please consider citing:
+```
+@Article{xiu2023msecnet,
+      title={MSECNet: Accurate and Robust Normal Estimation for 3D Point Clouds by Multi-Scale Edge Conditioning}, 
+      author={Haoyi Xiu and Xin Liu and Weimin Wang and Kyoung-Sook Kim and Masashi Matsuoka},
+      year={2023},
+      journal={arXiv:2308.02237},
+}
+```
