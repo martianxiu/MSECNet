@@ -131,13 +131,11 @@ def main():
 
 def data_load(data_name):
     try:
-        data_path = os.path.join(args.indir_Semantic3D, 'npy', data_name + '.xyz.npy')
-        coord = np.load(data_path)  # N, 3 
+        # data_path = os.path.join(args.indir_Semantic3D, 'npy', data_name + '.xyz.npy')
+        coord = np.load(join(args.indir_Semantic3D,  data_name + '.xyz.npy'))  # N, 3 
     except:
-        data_path = os.path.join(args.indir_Semantic3D, data_name + '.xyz')
-        coord = np.loadtxt(data_path)
-        os.makedirs(os.path.join(args.indir_Semantic3D, 'npy'), exist_ok=True)
-        np.save(os.path.join(args.indir_Semantic3D, 'npy', data_name + '.xyz.npy'), coord)
+        coord = np.loadtxt(join(args.indir_Semantic3D,  data_name + '.xyz'))
+        np.save(join(args.indir_Semantic3D,  data_name + '.xyz.npy'), coord)
     # label = np.load(label_path)  # N, 3 
     label = np.random.rand(coord.shape[0], 3) # for Semantic3D the labels (normals) are not availabel 
     feat = coord[:, 3:] # N, None; dummy data

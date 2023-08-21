@@ -127,11 +127,17 @@ def main():
 
 
 def data_load(data_name):
-    data_path = os.path.join(args.indir_SceneNN, 'npy', data_name + '.xyz.npy')
-    label_path = os.path.join(args.indir_SceneNN, 'npy', data_name + '.normals.npy')
-    coord = np.load(data_path)  # N, 3 
-    label = np.load(label_path)  # N, 3 
-    feat = coord[:, 3:] # N, None; dummy data
+    try: 
+        coord = np.load(join(args.indir_SceneNN, data_name + '.xyz.npy'))
+    except:
+        coord = np.loadtxt(join(args.indir_SceneNN, data_name + '.xyz'))
+        np.save(join(args.indir_SceneNN, data_name + '.xyz.npy'), coord)
+    try: 
+        label = np.load(join(args.indir_SceneNN, data_name + '.normals.npy'))
+    except:
+        label = np.loadtxt(join(args.indir_SceneNN, data_name + '.normals'))
+        np.save(join(args.indir_SceneNN, data_name + '.normals.npy'), label)
+    feat = coord[:, 3:] # (N, None); dummy data
 
     idx_data = []
     idx_data.append(np.arange(label.shape[0]))
@@ -406,7 +412,7 @@ def evaluate(normal_gt_path, normal_pred_path, output_dir):
                 points_idx = np.load(os.path.join(normal_gt_path, shape + '.pidx.npy'))      # (n,)
             except:
                 points_idx = np.loadtxt(os.path.join(normal_gt_path, shape + '.pidx')).astype(np.int32)
-                np.save(os.path.join(normal_gt_path, 'npy', shape + '.pidx.npy'), points_idx)
+                np.save(os.path.join(normal_gt_path, shape + '.pidx.npy'), points_idx)
             normal_gt = normal_gt[points_idx, :] # extract sparse patche 
             # if normal_pred.shape[0] > normal_gt.shape[0]:
             normal_pred = normal_pred[points_idx, :]

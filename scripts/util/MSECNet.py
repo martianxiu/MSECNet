@@ -305,7 +305,7 @@ class PointcloudPatchDataset(data.Dataset):
 
         # get all shape names in the dataset
         self.shape_names = []
-        with open(os.path.join(root, self.shape_list_filename)) as f:
+        with open(os.path.join(root, 'list', self.shape_list_filename)) as f:
             self.shape_names = f.readlines()
         self.shape_names = [x.strip() for x in self.shape_names]
         self.shape_names = list(filter(None, self.shape_names))

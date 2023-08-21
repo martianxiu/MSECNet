@@ -22,3 +22,6 @@ zip_ref.extractall(target_dir)
 zip_ref.close()
 os.remove(target_file)
 print('unzipping ... done')
+
+os.system('mkdir list')
+os.system('mv *.txt list')

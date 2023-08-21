@@ -167,7 +167,7 @@ def test(model, criterion, pred_dim, output_target_ind, output_pred_ind, output_
     
     # get all shape names in the dataset
     data_list = []
-    with open(os.path.join(args.indir, 'testset_all.txt')) as f:
+    with open(os.path.join(args.indir, 'list', 'testset_all.txt')) as f:
         data_list = f.readlines()
     data_list= [x.strip() for x in data_list]
     data_list= list(filter(None, data_list))
