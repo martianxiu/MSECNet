@@ -57,6 +57,7 @@ sh run.sh {put your experiment name}
 ```
 
 ## Testing
+cd scripts
 To test MSECNet on {dataset}, where dataset can be "PCPNet", "SceneNN", or "Semantic3D":
 ```
 sh run_test.sh {dataset} {your experiment name}
