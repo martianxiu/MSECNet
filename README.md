@@ -15,3 +15,43 @@ The code is tested using Python 3.11 and CUDA 11.8.
 - pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118  
 - pip3 install h5py pyyaml tensorboardx scipy plyfile 
 
+### Install [pointops](https://github.com/POSTECH-CVLab/point-transformer)
+- cd scripts/lib/pointops
+- python3 setup.py install
+
+## Datasets
+We use [PCPNet](https://github.com/paulguerrero/pcpnet) dataset for training and testing.  
+To download it, 
+- cd scripts/dataset/pclouds
+- python3 download_pclouds.py
+
+Additionally, we apply the PCPNet-trained model to SceneNN and Semantic3D datasets.  
+To download them, please refer to [HSurfNet](https://github.com/LeoQLi/HSurf-Net/).   
+
+The dataset directory structure will be 
+```
+│dataset/
+├──pclouds/
+│  ├── list
+│      ├── ***.txt
+│  ├── ***.xyz
+│  ├── ***.normals
+│  ├── ***.pidx
+├──SceneNN/
+│  ├── list
+│      ├── ***.txt
+│  ├── ***.xyz
+│  ├── ***.normals
+│  ├── ***.pidx
+├──Semantic3D/
+│  ├── list
+│      ├── ***.txt
+│  ├── ***.xyz
+```
+
+## Training
+To train MSECNet on PCPNet: 
+```
+cd scripts
+sh run.sh {put your experiment name}
+```
