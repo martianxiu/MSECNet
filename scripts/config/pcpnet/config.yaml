@@ -1,0 +1,108 @@
+DATA:
+  data_name: pcpnet 
+  d_in_initial: 0 # feat dim without counting the xyz 
+  d_out_initial: 64 # out dim of first layer. 
+  num_classes: 0 # this will be updated automatically depending on the "outputs" 
+  points_per_patch: 700 
+  strides: [2, 2, 2] 
+  nsample_conv: 16  
+  nsample: 16 
+  indir: dataset/pclouds 
+  indir_SceneNN: dataset/SceneNN 
+  indir_Semantic3D: dataset/Semantic3D
+  trainset: trainingset_whitenoise.txt 
+  testset: validationset_vardensity_whitenoise.txt 
+  patch_radius: [0.05]
+  patch_center: point
+  patch_point_count_std: 0
+  patches_per_shape: 1000 
+  cache_capacity: 100
+  training_order: random
+  identical_epochs: False
+  momentum: 0.9
+  use_pca: True 
+  normal_loss: ms_euclidean_ms_sin 
+  outputs: ['unoriented_normals'] 
+  use_point_stn: False 
+  use_feat_stn: False
+  sym_op: max
+  point_tuple: 1
+  sampling: 'knn'
+  pp_normal: True 
+  custom_loss_weight: 0.0 
+  ms_pca_normals: False 
+
+  nsample_side: 9 
+  nsample_interp: 3 
+  interp_weight_type: 'spatial' 
+  n_scale: 4 
+  d_fusion: 1024 # each level dim: 64, 128, 256, 512 
+  side_transform_block: 'residual_fusion' 
+  side_transform: 'pointnet2/pointwise_mlp' 
+  edge_detector: 'adaptive_laplacian' 
+  
+Model:
+  architecture: [ 
+    'simple',
+    'residual',
+    'downsample',
+    'residual',
+    'residual',
+    'downsample',
+    'residual',
+    'residual',
+    'downsample',
+    'residual',
+    'residual',
+    'upsample',
+    'upsample',
+    'upsample',
+  ]
+
+  convolution: 'pointnet2'  
+  decoder_out_dim: 128 
+  bottleneck_ratio: 4   
+
+TRAIN:
+  arch: 'MSECNet' 
+  aug: ''
+  sync_bn: False
+  ignore_label: 255
+  train_gpu: [0]
+  # multiprocessing_distributed: False 
+  # workers: 10
+  # batch_size: 32 
+  # batch_size_val: 32 
+  # base_lr: 0.001  
+  optimizer: adamw 
+  scheduler: cos 
+  epochs: 150 
+  start_epoch: 0
+  step_epoch: 30
+  multiplier: 0.1
+  momentum: 0.9
+  weight_decay: 0.0001
+  drop_rate: 0.5
+  manual_seed: 
+  print_freq: 1 
+  save_freq: 1
+  save_path:
+  weight:  # path to initial weight (default: none)
+  resume:  # path to latest checkpoint (default: none)
+  evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
+  eval_freq: 1
+Distributed:
+  dist_url: tcp://localhost:8888
+  dist_backend: 'nccl'
+  multiprocessing_distributed: True 
+  train_gpu: [0, 1, 2, 3]
+  base_lr: 0.002  # default 0.001
+  batch_size: 128  # def 256, best: 128 
+  batch_size_val: 128  # def 256, best: 128
+  workers: 32 
+  world_size: 1
+  rank: 0
+TEST:
+  save_folder: 
+  model_path: 
+  batch_size_test:
