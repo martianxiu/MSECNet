@@ -55,3 +55,8 @@ To train MSECNet on PCPNet:
 cd scripts
 sh run.sh {put your experiment name}
 ```
+## Testing
+To test MSECNet on {dataset}:
+```
+sh run_test.sh {dataset} {your experiment name}
+```
