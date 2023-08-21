@@ -57,14 +57,18 @@ sh run.sh {put your experiment name}
 ```
 
 ## Testing
-cd scripts
 To test MSECNet on {dataset}, where dataset can be "PCPNet", "SceneNN", or "Semantic3D":
 ```
+cd scripts
 sh run_test.sh {dataset} {your experiment name}
 ```
 
 ## Log and pretrained models 
 [Experiment logs](https://drive.google.com/drive/folders/15xCmw9wwtNCweE1nJPx7eyD5hLtJ4PuA?usp=sharing) and [pretrained model](https://drive.google.com/drive/folders/1KSABd2Ydvrr7FN4JOVJFqnJTA2YbLDp_?usp=sharing) are available.
+
+## Acknowledement 
+This repo is based on/inspried by many great works including but not limited to:  
+[PCPNet](https://github.com/paulguerrero/pcpnet), [DeepFit](https://github.com/sitzikbs/DeepFit), [HSurfNet](https://github.com/LeoQLi/HSurf-Net/), [Point Transformer](https://github.com/POSTECH-CVLab/point-transformer), and [KPConv](https://github.com/HuguesTHOMAS/KPConv).  
 
 ## Citation
 If you find our work useful in your research, please consider citing:
